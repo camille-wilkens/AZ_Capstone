@@ -1,0 +1,61 @@
+Collecting pandas
+  Downloading pandas-1.1.5-cp36-cp36m-manylinux1_x86_64.whl (9.5 MB)
+Requirement already satisfied: numpy>=1.15.4 in /azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages (from pandas) (1.19.5)
+Requirement already satisfied: pytz>=2017.2 in /azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages (from pandas) (2022.1)
+Requirement already satisfied: python-dateutil>=2.7.3 in /azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages (from pandas) (2.8.2)
+Requirement already satisfied: six>=1.5 in /azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages (from python-dateutil>=2.7.3->pandas) (1.16.0)
+Installing collected packages: pandas
+Successfully installed pandas-1.1.5
+check to make
+[stderr]2022-04-06 22:38:48.995928 | ActivityCompleted: Activity=from_delimited_files, HowEnded=Failure, Duration=3700.99 [ms], Info = {'activity_id': '980ac5e3-c7bc-427c-920f-e6e77846729b', 'activity_name': 'from_delimited_files', 'activity_type': 'PublicApi', 'app_name': 'TabularDataset', 'source': 'azureml.dataset', 'version': '1.40.0', 'dataprepVersion': '3.0.1', 'sparkVersion': '', 'subscription': '6971f5ac-8af1-446e-8034-05acea24681f', 'run_id': 'HD_58b49c00-cacf-4d0a-ad1a-225ae9bbee16_1', 'resource_group': 'aml-quickstarts-191197', 'workspace_name': 'quick-starts-ws-191197', 'experiment_id': '67bfeda3-4bd9-42c7-90a7-8fec31d85d4e', 'location': 'southcentralus'}, Exception=DatasetValidationError; DatasetValidationError:
+[stderr]	Message: Failed to validate the data.
+[stderr]The Dataflow produced no records.| session_id=l_822619f3-adf5-414d-acda-ae3cb5643364
+[stderr]	InnerException None
+[stderr]	ErrorResponse 
+[stderr]{
+[stderr]    "error": {
+[stderr]        "code": "UserError",
+[stderr]        "message": "Failed to validate the data.\nThe Dataflow produced no records.| session_id=l_822619f3-adf5-414d-acda-ae3cb5643364"
+[stderr]    }
+[stderr]}
+Cleaning up all outstanding Run operations, waiting 300.0 seconds
+1 items cleaning up...
+Cleanup took 0.06931304931640625 seconds
+[stderr]Traceback (most recent call last):
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/azureml/data/dataset_error_handling.py", line 65, in _validate_has_data
+[stderr]    dataflow.verify_has_data()
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/azureml/dataprep/api/_loggerfactory.py", line 213, in wrapper
+[stderr]    return func(*args, **kwargs)
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/azureml/dataprep/api/dataflow.py", line 835, in verify_has_data
+[stderr]    raise DataflowValidationError("The Dataflow produced no records.")
+[stderr]azureml.dataprep.api.dataflow.DataflowValidationError: 
+[stderr]Error Code: Empty
+[stderr]Error Message: The Dataflow produced no records.| session_id=l_822619f3-adf5-414d-acda-ae3cb5643364
+[stderr]
+[stderr]During handling of the above exception, another exception occurred:
+[stderr]
+[stderr]Traceback (most recent call last):
+[stderr]  File "train.py", line 67, in <module>
+[stderr]    main()
+[stderr]  File "train.py", line 48, in main
+[stderr]    ds = TabularDatasetFactory.from_delimited_files(data_url)
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/azureml/data/_loggerfactory.py", line 132, in wrapper
+[stderr]    return func(*args, **kwargs)
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/azureml/data/dataset_factory.py", line 369, in from_delimited_files
+[stderr]    infer_column_types or _is_inference_required(set_column_types))
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/azureml/data/dataset_factory.py", line 1166, in _transform_and_validate
+[stderr]    _validate_has_data(dataflow, 'Failed to validate the data.')
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/azureml/data/dataset_error_handling.py", line 68, in _validate_has_data
+[stderr]    raise DatasetValidationError(error_message + '\n' + e.compliant_message, exception=e)
+[stderr]azureml.data.dataset_error_handling.DatasetValidationError: DatasetValidationError:
+[stderr]	Message: Failed to validate the data.
+[stderr]The Dataflow produced no records.| session_id=l_822619f3-adf5-414d-acda-ae3cb5643364
+[stderr]	InnerException None
+[stderr]	ErrorResponse 
+[stderr]{
+[stderr]    "error": {
+[stderr]        "code": "UserError",
+[stderr]        "message": "Failed to validate the data.\nThe Dataflow produced no records.| session_id=l_822619f3-adf5-414d-acda-ae3cb5643364"
+[stderr]    }
+[stderr]}
+[stderr]
