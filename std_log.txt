@@ -1,0 +1,37 @@
+Collecting pandas
+  Downloading pandas-1.1.5-cp36-cp36m-manylinux1_x86_64.whl (9.5 MB)
+Requirement already satisfied: numpy>=1.15.4 in /azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages (from pandas) (1.19.5)
+Requirement already satisfied: python-dateutil>=2.7.3 in /azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages (from pandas) (2.8.2)
+Requirement already satisfied: pytz>=2017.2 in /azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages (from pandas) (2022.1)
+Requirement already satisfied: six>=1.5 in /azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages (from python-dateutil>=2.7.3->pandas) (1.16.0)
+Installing collected packages: pandas
+Successfully installed pandas-1.1.5
+[stderr]/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/pandas/core/frame.py:4174: SettingWithCopyWarning: 
+[stderr]A value is trying to be set on a copy of a slice from a DataFrame
+[stderr]
+[stderr]See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+[stderr]  errors=errors,
+[stderr]/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/sklearn/linear_model/logistic.py:433: FutureWarning: Default solver will be changed to 'lbfgs' in 0.22. Specify a solver to silence this warning.
+[stderr]  FutureWarning)
+Cleaning up all outstanding Run operations, waiting 300.0 seconds
+1 items cleaning up...
+Cleanup took 0.08827757835388184 seconds
+[stderr]Traceback (most recent call last):
+[stderr]  File "train.py", line 68, in <module>
+[stderr]    main()
+[stderr]  File "train.py", line 59, in main
+[stderr]    model = LogisticRegression(C=args.C,max_iter=args.max_iter).fit(x_train, y_train)
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/sklearn/linear_model/logistic.py", line 1288, in fit
+[stderr]    accept_large_sparse=solver != 'liblinear')
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/sklearn/utils/validation.py", line 756, in check_X_y
+[stderr]    estimator=estimator)
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/sklearn/utils/validation.py", line 527, in check_array
+[stderr]    array = np.asarray(array, dtype=dtype, order=order)
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/numpy/core/_asarray.py", line 83, in asarray
+[stderr]    return array(a, dtype, copy=False, order=order)
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/pandas/core/generic.py", line 1781, in __array__
+[stderr]    return np.asarray(self._values, dtype=dtype)
+[stderr]  File "/azureml-envs/azureml_ba9520bf386d662001eeb9523395794e/lib/python3.6/site-packages/numpy/core/_asarray.py", line 83, in asarray
+[stderr]    return array(a, dtype, copy=False, order=order)
+[stderr]ValueError: could not convert string to float: 'male'
+[stderr]
