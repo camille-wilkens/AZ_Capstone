@@ -23,7 +23,14 @@ def clean_data(data):
 
     # Clean and one hot encode data
     x_df = data.to_pandas_dataframe().dropna()
-    x_df.drop(['PassengerId','Name'],axis=1,inplace=True)
+    x_df.drop_duplicates(inplace=True)
+ 
+    x_df.drop(['PassengerId','Cabin','Name','Ticket','Embarked', 'SibSp', 'Parch'],axis=1,inplace=True)
+    x_df['Sex'].replace(['male', 'female'], [0, 1], inplace=True)
+    x_df['Age'].fillna(x_df[Age].mean(), inplace=True)
+    x_df['Fare'].fillna(x_df[Fare].median(), inplace=True)
+
+    
     y_df = x_df.pop("Survived")
     return x_df, y_df
 
