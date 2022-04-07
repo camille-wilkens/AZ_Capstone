@@ -1,24 +1,7 @@
+# Heart Failure Prediction
+## Udacity Azure Machine Learning Nanodegree Capstone Project
 
-
-
-
-An overview of the project
-An overview of the dataset used
-An overview of the method used to get the data into your Azure ML Studio workspace.
-An overview of your AutoML experiment settings and configuration
-An overview of the types of parameters and their ranges used for the hyperparameter search
-An overview of the two models with the best parameters
-An overview of the deployed model and instructions on how to query the endpoint with a sample input
-A short overview of how to improve the project in the future
-ALL the screenshots required with a short description
-A link to the screencast video on YouTube (or a similar alternative streaming ser
-
-
-*NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
-
-# Your Project Title Here
-
-*TODO:* Write a short introduction to your project.
+Heart failure is a common event caused by Cardiovascular diseases which is the #1 cause of death globally, taking an estimated 17.9 million lives each year (31% of all deaths worlwide).  This project uses [Heart Failure Clinical Data](https://www.kaggle.com/datasets/andrewmvd/heart-failure-clinical-data) to predict a death event caused by heart failure.  This dataset contains 12 clinical features for predicting death events based on medical records of 299 patients.
 
 In this Udacity Azure Machine Learning Nanodegree Capstone project, I created two models: one using Automated ML (denoted as AutoML from now on) and one customized model whose hyperparameters are tuned using HyperDrive. I then compared the performance of both the models and deployed the best performing model.  This project used an [external datasets](https://www.kaggle.com/code/yasserh/titanic-survival-predition-top-ml-algorithms/data) and trained a model using different tools available in the AzureML framework as well as deployinging the model as a web service.
 
@@ -46,6 +29,11 @@ In this Udacity Azure Machine Learning Nanodegree Capstone project, I created tw
 ## Dataset
 
 ### Overview
+This project uses an external dataset from Kaggle - [Heart Failure Clinical Data](https://www.kaggle.com/datasets/andrewmvd/heart-failure-clinical-data). Heart failure is a common event caused by Cardiovascular diseases  which is the #1 cause of death globally, taking an estimated 17.9 million lives each year (31% of all deaths worlwide).
+
+and this dataset contains 12 features that can be used to predict mortality by heart failure. It contains medical records of 299 patients 
+
+Dataset from Davide Chicco, Giuseppe Jurman: “Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making 20, 16 (2020)
 *TODO*: Explain about the data you are using and where you got it from.
 
 #### Task
