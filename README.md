@@ -29,11 +29,12 @@ In this Udacity Azure Machine Learning Nanodegree Capstone project, I created tw
 ## Dataset
 
 ### Overview
-This project uses an external dataset from Kaggle - [Heart Failure Clinical Data](https://www.kaggle.com/datasets/andrewmvd/heart-failure-clinical-data). Heart failure is a common event caused by Cardiovascular diseases  which is the #1 cause of death globally, taking an estimated 17.9 million lives each year (31% of all deaths worlwide).
+This project uses an external dataset from Kaggle - [Heart Failure Clinical Data](https://www.kaggle.com/datasets/andrewmvd/heart-failure-clinical-data). This dataset contains 12 features that can be used to predict mortality by heart failure. It contains medical records of 299 patients 
 
-and this dataset contains 12 features that can be used to predict mortality by heart failure. It contains medical records of 299 patients 
-
+'''
 Dataset from Davide Chicco, Giuseppe Jurman: “Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making 20, 16 (2020)
+'''
+
 *TODO*: Explain about the data you are using and where you got it from.
 
 #### Task
