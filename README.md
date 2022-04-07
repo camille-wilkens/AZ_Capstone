@@ -63,8 +63,8 @@ Remeber to provide screenshots of the `RunDetails` widget best model trained wit
 Overview of the types of parameters and their ranges used for the hyperparameter search
 * 
 '''
-    {"--C":choice(0.5,1.0),     
-    "--max_iter":choice(50,100,150)})  
+"--C":choice(0.5,1.0),     
+"--max_iter":choice(50,100,150)
 '''
 
 * I used RandomParameterSampling as it supports continous and discrete hyperparamters.  Another key benefit of using RandomParameterSampling, is its less resource intensive and time consuming and supports early termination.
@@ -76,7 +76,7 @@ Overview of the types of parameters and their ranges used for the hyperparameter
 
 #### Model Used & Why 
 #### Prepare Data
-* Download the dataset [Data](https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv) and convert into   TabularDatasetFactory dataset.
+* Download the dataset [Data](https://raw.githubusercontent.com/camille-wilkens/AZ_Capstone/main/heart_failure_clinical_records_dataset.csv) and convert into   TabularDatasetFactory dataset.
 * Clean the dataset (clean_data located in train.py)
 * Split data into training and test sets (80/20)
 * Utilize a Scikit-learn Logistic Regression Model for Classification
@@ -106,17 +106,6 @@ estimator=SKLearn(source_directory='.', entry_script='train.py', compute_target=
 
 
 
-### Table of Contents
-
-1. [Summary](#summary)
-2. [Scikit-learn Pipeline](#pipeline)
-3. [AutoML](#automl)
-4. [Pipeline Comparison](#comparison)
-5. [Future work](#future)
-6. [Clean up](#clean)
-7. [Useful Resources](#clean)
-
-
 
 ## Summary<a name="summary"></a>
 This project is based on a bank's marketing campaign and the goal of this project is to predict if a customer will sign up for a new term deposit offering.  The dataset used in this project contains data about a bank's marketing campaign including bank client's demographic information.  
@@ -127,7 +116,7 @@ Azure AutoML produced the best performing model which was VotingEnsemble with an
 
 #### Pipeline Architecture
 * Prepare Data
-* Download the dataset [Data](https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv) and convert into   TabularDatasetFactory dataset.
+* Download the dataset [Data](https://raw.githubusercontent.com/camille-wilkens/AZ_Capstone/main/heart_failure_clinical_records_dataset.csv) and convert into   TabularDatasetFactory dataset.
 * Clean the dataset (clean_data located in train.py)
 * Split data into training and test sets (80/20)
 * Utilize a Scikit-learn Logistic Regression Model for Classification
@@ -154,7 +143,7 @@ estimator=SKLearn(source_directory='.', entry_script='train.py', compute_target=
   Bandit Policy is also less resource intensive and time consuming. If a run's performance is outside the best run's slack_factor, the run is early terminated -- saving time and resources.
 
 ## AutoML<a name="automl"></a>
-* Download the dataset [Data](https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv) and convert into   TabularDatasetFactory dataset.
+* Download the dataset [Data](https://raw.githubusercontent.com/camille-wilkens/AZ_Capstone/main/heart_failure_clinical_records_dataset.csv) and convert into   TabularDatasetFactory dataset.
 * Clean the dataset (clean_data located in train.py)
 * Split data into training and test sets (80/20)
 * Configure AutoML
