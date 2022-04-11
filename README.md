@@ -3,7 +3,7 @@
 
 Heart failure is a common event caused by Cardiovascular diseases which is the #1 cause of death globally, taking an estimated 17.9 million lives each year (31% of all deaths worlwide).  This project uses [Heart Failure Clinical Data](https://www.kaggle.com/datasets/andrewmvd/heart-failure-clinical-data) to predict a death event caused by heart failure.  This dataset contains 12 clinical features for predicting death events based on medical records of 299 patients.
 
-In this Udacity Azure Machine Learning Nanodegree Capstone project, I created two models: one using Automated ML (denoted as AutoML from now on) and one customized model whose hyperparameters are tuned using HyperDrive. I then compared the performance of both the models and deployed the best performing model.  This project used an [external datasets](https://www.kaggle.com/code/yasserh/titanic-survival-predition-top-ml-algorithms/data) and trained a model using different tools available in the AzureML framework as well as deployinging the model as a web service.
+In this Udacity Azure Machine Learning Nanodegree Capstone project, I created two models: one using Automated ML (denoted as AutoML from now on) and one customized model whose hyperparameters are tuned using HyperDrive. I then compared the performance of both the models and deployed the best performing model.  This project used an [external datasets](https://www.kaggle.com/datasets/andrewmvd/heart-failure-clinical-data) and trained a model using different tools available in the AzureML framework as well as deploying the model as a web service.
 
 ## Project Workflow
 ![project_workflow](./images/workflow.PNG)
@@ -24,16 +24,26 @@ In this Udacity Azure Machine Learning Nanodegree Capstone project, I created tw
 
 ## Project Set Up and Installation
 
-*OPTIONAL:* If your project has any special installation steps, this is where you should put it. To turn this project into a professional portfolio project, you are encouraged to explain how to set up this project in AzureML.
+*Create a new workspace in Microsoft Azure Machine Learning Studio
+*Create Compute Instance called automl-inst using STANDARD_DS12_V2
+*Use the Compute Instance terminal and type:
+
+git clone https://github.com/camille-wilkens/AZ_Capstone.git --depth 1
+Open automl.ipynb and execute all the cells
+Open hyperparameter_tuning.ipynb and execute all the cells
+
+
+
+
 
 ## Dataset
 
 ### Overview
 This project uses an external dataset from Kaggle - [Heart Failure Clinical Data](https://www.kaggle.com/datasets/andrewmvd/heart-failure-clinical-data). This dataset contains 12 features that can be used to predict mortality by heart failure. It contains medical records of 299 patients 
 
-'''
+```
 Dataset from Davide Chicco, Giuseppe Jurman: “Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making 20, 16 (2020)
-'''
+```
 
 *TODO*: Explain about the data you are using and where you got it from.
 
@@ -62,26 +72,25 @@ Remeber to provide screenshots of the `RunDetails` widget best model trained wit
 #### RandomParamterSampling
 Overview of the types of parameters and their ranges used for the hyperparameter search
 * 
-'''
+```
 "--C":choice(0.5,1.0),     
 "--max_iter":choice(50,100,150)
-'''
+```
 
 * I used RandomParameterSampling as it supports continous and discrete hyperparamters.  Another key benefit of using RandomParameterSampling, is its less resource intensive and time consuming and supports early termination.
 
 * The Early Stopping policy, I utilized was the Bandit Policy is also less resource intensive and time consuming.  If a run's performance is outside the best run's slack_factor, the run is early terminated -- saving time and resources.
 
-* 
-
 
 #### Model Used & Why 
 #### Prepare Data
-* Download the dataset [Data](https://raw.githubusercontent.com/camille-wilkens/AZ_Capstone/main/heart_failure_clinical_records_dataset.csv) and convert into   TabularDatasetFactory dataset.
+* Download the dataset [Data](https://raw.githubusercontent.com/camille-wilkens/AZ_Capstone/main/heart_failure_clinical_records_dataset.csv) and convert into a TabularDatasetFactory dataset.
 * Clean the dataset (clean_data located in train.py)
 * Split data into training and test sets (80/20)
 * Utilize a Scikit-learn Logistic Regression Model for Classification
    
 #### Hyperparamater Tuning
+```
 hyperdrive_config = HyperDriveConfig (
 hyperparameter_sampling=RandomParameterSampling(
 {"--C":choice(0.5,1.0), --max_iter":choice(50,100,150)})  ,
@@ -91,6 +100,7 @@ policy=BanditPolicy(evaluation_interval=1, slack_factor=0.1),
 max_total_runs=8, 
 max_concurrent_runs=4,
 estimator=SKLearn(source_directory='.', entry_script='train.py', compute_target=cluster_name))
+```
            
 #### Classifcation Algorithim
 * Logistic Regression
@@ -122,6 +132,7 @@ Azure AutoML produced the best performing model which was VotingEnsemble with an
 * Utilize a Scikit-learn Logistic Regression Model for Classification
    
 #### Hyperparamater Tuning
+```
 hyperdrive_config = HyperDriveConfig (
 hyperparameter_sampling=RandomParameterSampling(
 {"--C":choice(0.5,1.0), --max_iter":choice(50,100,150)})  ,
@@ -131,6 +142,7 @@ policy=BanditPolicy(evaluation_interval=1, slack_factor=0.1),
 max_total_runs=8, 
 max_concurrent_runs=4,
 estimator=SKLearn(source_directory='.', entry_script='train.py', compute_target=cluster_name))
+```
            
 #### Classifcation Algorithim
 * Logistic Regression
@@ -150,6 +162,7 @@ estimator=SKLearn(source_directory='.', entry_script='train.py', compute_target=
 * Save Best Model
 
 #### AutoML Config
+```
 AutoMLConfig(
     experiment_timeout_minutes=30,
     task= 'classification',
@@ -157,7 +170,7 @@ AutoMLConfig(
     training_data= train_data,
     label_column_name= 'y',
     n_cross_validations= 4, compute_target = compute_target)
-    
+ ``` 
     
 #### Best Model 
 * VotingEnsemble with an accurary of 91.756%
