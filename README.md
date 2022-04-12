@@ -22,21 +22,19 @@ In this Udacity Azure Machine Learning Nanodegree Capstone project, I created tw
 9. [Future Improvements](#future)
 
 
-## Project Set Up and Installation
+## Project Set Up and Installation<a name="setup"></a>
 
-*Create a new workspace in Microsoft Azure Machine Learning Studio
-*Create Compute Instance called automl-inst using STANDARD_DS12_V2
-*Use the Compute Instance terminal and type:
-
+* Create a new workspace in Microsoft Azure Machine Learning Studio
+* Create Compute Instance called automl-inst using STANDARD_DS12_V2
+* Use the Compute Instance terminal and type:
+```
 git clone https://github.com/camille-wilkens/AZ_Capstone.git --depth 1
-Open automl.ipynb and execute all the cells
-Open hyperparameter_tuning.ipynb and execute all the cells
+```
+* Open automl.ipynb and execute all the cells
+* Open hyperparameter_tuning.ipynb and execute all the cells
 
 
-
-
-
-## Dataset
+## Dataset<a name="dataset"></a>
 
 ### Overview
 This project uses an external dataset from Kaggle - [Heart Failure Clinical Data](https://www.kaggle.com/datasets/andrewmvd/heart-failure-clinical-data). This dataset contains 12 features that can be used to predict mortality by heart failure. It contains medical records of 299 patients 
@@ -44,8 +42,22 @@ This project uses an external dataset from Kaggle - [Heart Failure Clinical Data
 ```
 Dataset from Davide Chicco, Giuseppe Jurman: “Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making 20, 16 (2020)
 ```
+| Name | Description | Type|
+|:--------------|:-------------:|--------------:|
+| age | Age of Patient| Years|
+| anaemia | Decrease of red blood cells or hemoglobin| (boolean)|
+| creatinine_phosphokinase | Level of the CPK enzyme in the blood| (mcg/L)|
+| diabetes | If the patient has diabetes| (boolean)|
+| ejection_fraction| Percentage of blood leaving the heart at each contraction| (percentage)|
+| high_blood_pressure| If the patient has hypertension| (boolean)|
+| platelets| Platelets in the blood | (kiloplatelets/mL))|
+| serum_creatinine| Level of serum creatinine in the blood  | (mg/dL)|
+| serum_sodium| Level of serum sodium in the blood   | (mEq/L)|
+| sex| Woman or man  | binary|
+| smoking| If the patient smokes or not  | (boolean)|
+| time| Follow-up period  | (days) )|
 
-*TODO*: Explain about the data you are using and where you got it from.
+| TARGET: DEATH_EVENT| If the patient deceased during the follow-up period | (boolean)|
 
 #### Task
 *TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
