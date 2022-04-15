@@ -23,7 +23,7 @@ def clean_data(data):
 
     # Clean and one hot encode data
     x_df = data.to_pandas_dataframe().dropna()
-    x_df=drop_duplicates(inplace=True)
+
 
 
     y_df = x_df.pop("DEATH_EVENT")
