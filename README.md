@@ -292,9 +292,9 @@ Returns the following:
 [0, 0]
 ```
 #### Screenshots
-![Best Model Summary](./images/endpoint.PNG)
+![Best Model Summary](./images/end_point.PNG)
 ![Best Model Summary](./images/deployed_web_service.PNG)
-![Best Model Summary](./images/test_web_service.PNG)
+![Best Model Summary](./images/test_webservice.PNG)
 ![Best Model Summary](./images/test_endpoint.PNG)
 
 
