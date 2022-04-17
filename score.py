@@ -13,7 +13,7 @@ from azureml.core.model import Model
 
 def init():   
     global model
-    model_path = Model.get_model_path(model_name = 'HyperDrive_model')
+    model_path = Model.get_model_path(model_name = 'Heart_Failure_Prediction_Model')
     model = joblib.load(model_path)
 
 
