@@ -22,13 +22,12 @@ In this Udacity Azure Machine Learning Nanodegree Capstone project, I created tw
 4. [Hyperparameter Tuning](#hyper)
 	* Overview
 	* Results
-5. [Model Deployement](#deploy)
+5. [Model Deployment](#deploy)
 	* Overview
-	* Results
-7. [Create and publish a pipeline](#pipeline)
-8. [Documentation Video](#video)
-9. [Future Improvements](#future)
-
+	* Instructions on how to query the endpoint
+6. [Documentation Video](#video)
+7. [Future Improvements](#future)
+8. [Acknowledgements](#ack)
 
 ## Step 1: Project Set Up and Installation<a name="setup"></a>
 
@@ -98,8 +97,8 @@ if not found:
                         
 In the Hyperdrive model, a Jupyter Notebook (hyperparameter_tuning.ipynb) reads the dataset using train.py which creates a TabularDataset using TabularDatasetFactory. 
 
-## Step 4: Automated ML<a name="automl"></a>
-#### Overview 
+## Step 3: Automated ML<a name="automl"></a>
+### Overview 
 `automl` settings and configuration utlized in this experiment  
 ```
 automl_settings = {
@@ -111,10 +110,11 @@ automl_settings = {
 ```
 
 ```
+
 automl_config = AutoMLConfig(compute_target=compute_target,
                              task = "classification",
                              training_data=dataset,
-                             label_column_name="Survived",   
+                             label_column_name="DEATH_EVENT",   
                              enable_early_stopping= True,
                              featurization= 'auto',
                              debug_log = "automl_errors.log",
@@ -122,25 +122,59 @@ automl_config = AutoMLConfig(compute_target=compute_target,
                             )
 ```
 
-#### Results
-VotingEnsemble with an accurary of 91.756% was tehe best model
+### Results
+VotingEnsemble with an accurary of 85.8% and AUC Weighted of 92.3% was the best model
 
+### Best Run
+```
+best_run,fitted_model = remote_run.get_output()
+best_run_metrics = best_run.get_metrics() 
 
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
+print("Best Run:",best_run.id)
+print(best_run)
+print("Fitted Model:", fitted_model)
+print("Fitted Model Steps:")
+print(fitted_model.steps)
+print("Best Run Metrics")
+print(best_run_metrics)
+
+for i in best_run_metrics:
+    x = best_run_metrics[i]
+    print(i,x )
+```
+
+```
+Best Run: AutoML_11620fab-74d8-4a45-b233-a596d2fcec2f_38
+Run(Experiment: ml-experiment-1,
+Id: AutoML_11620fab-74d8-4a45-b233-a596d2fcec2f_38,
+Type: azureml.scriptrun,
+Status: Completed)
+Fitted Model: Pipeline(memory=None,
+         steps=[('datatransformer',
+                 DataTransformer(enable_dnn=False, enable_feature_sweeping=True, feature_sweeping_config={}, feature_sweeping_timeout=86400, featurization_config=None, force_text_dnn=False, is_cross_validation=True, is_onnx_compatible=False, observer=None, task='classification', working_dir='/mnt/batch/tasks/shared/LS_root/mount...
+                 PreFittedSoftVotingClassifier(classification_labels=array([0, 1]), estimators=[('1', Pipeline(memory=None, steps=[('maxabsscaler', MaxAbsScaler(copy=True)), ('xgboostclassifier', XGBoostClassifier(n_jobs=1, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, tree_method='auto'))], verbose=False)), ('0', Pipeline(memory=None, steps=[('maxabsscaler', MaxAbsScaler(copy=True)), ('lightgbmclassifier', LightGBMClassifier(min_data_in_leaf=20, n_jobs=1, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=None))], verbose=False)), ('4', Pipeline(memory=None, steps=[('standardscalerwrapper', StandardScalerWrapper(copy=True, with_mean=False, with_std=True)), ('lightgbmclassifier', LightGBMClassifier(boosting_type='gbdt', colsample_bytree=0.4955555555555555, learning_rate=0.09473736842105263, max_bin=140, max_depth=6, min_child_weight=0, min_data_in_leaf=0.08276034482758622, min_split_gain=0.10526315789473684, n_estimators=25, n_jobs=1, num_leaves=164, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=None, reg_alpha=0.3157894736842105, reg_lambda=0.3157894736842105, subsample=0.5942105263157895))], verbose=False)), ('20', Pipeline(memory=None, steps=[('standardscalerwrapper', StandardScalerWrapper(copy=True, with_mean=False, with_std=False)), ('xgboostclassifier', XGBoostClassifier(booster='gbtree', colsample_bytree=0.9, eta=0.1, gamma=0, max_depth=6, max_leaves=3, n_estimators=25, n_jobs=1, objective='reg:logistic', problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, reg_alpha=0, reg_lambda=0.7291666666666667, subsample=0.5, tree_method='auto'))], verbose=False)), ('23', Pipeline(memory=None, steps=[('maxabsscaler', MaxAbsScaler(copy=True)), ('lightgbmclassifier', LightGBMClassifier(boosting_type='goss', colsample_bytree=0.5944444444444444, learning_rate=0.026323157894736843, max_bin=310, max_depth=-1, min_child_weight=3, min_data_in_leaf=1e-05, min_split_gain=0.7894736842105263, n_estimators=50, n_jobs=1, num_leaves=131, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=None, reg_alpha=0.3684210526315789, reg_lambda=1, subsample=1))], verbose=False)), ('29', Pipeline(memory=None, steps=[('maxabsscaler', MaxAbsScaler(copy=True)), ('lightgbmclassifier', LightGBMClassifier(boosting_type='gbdt', colsample_bytree=0.2977777777777778, learning_rate=0.06842421052631578, max_bin=130, max_depth=8, min_child_weight=1, min_data_in_leaf=0.09310413793103449, min_split_gain=0.631578947368421, n_estimators=100, n_jobs=1, num_leaves=119, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=None, reg_alpha=1, reg_lambda=0.47368421052631576, subsample=0.8415789473684211))], verbose=False)), ('33', Pipeline(memory=None, steps=[('sparsenormalizer', Normalizer(copy=True, norm='l2')), ('xgboostclassifier', XGBoostClassifier(booster='gbtree', colsample_bytree=1, eta=0.01, gamma=0, grow_policy='lossguide', max_bin=63, max_depth=10, max_leaves=511, n_estimators=100, n_jobs=1, objective='reg:logistic', problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, reg_alpha=1.5625, reg_lambda=0.625, subsample=0.8, tree_method='hist'))], verbose=False))], flatten_transform=None, weights=[0.15384615384615385, 0.38461538461538464, 0.15384615384615385, 0.07692307692307693, 0.07692307692307693, 0.07692307692307693, 0.07692307692307693]))],
+         verbose=False)
+```
+
 
 #### Screenshots
-Remeber to provide screenshots of the `RunDetails` widget best model trained with it's parameters.
 
-#### RunDetails widget (shows progress of training runs of the different experiements): 
-![RunDetails Widget](rundetails.PNG)
-
+#### RunDetails widget (shows progress of training runs of the different experiments): 
+![RunDetails Widget](./images/automl_best_run_details.PNG)
 
 #### Best Model with Run ID (VotingEnsemble): 
-![Best Model Summary](best_model_summary.PNG)
+![Best Model Summary](./images/automl_best_model2.PNG)
+![Best Model Summary](./images/automl_best3.PNG)
+![Best Model Summary](./images/automl_best4.PNG)
+
+
 
 #### Improvement Areas
 
-AutoML alerted to Class balancing detection and changing the accuary metric to another type could address the imbalanced data. Adding data to ensure each class has a good representation in the dataset, measured by the number and ratio of samples could address this issue as well.
+* Increase the number of cross validations
+* Spend more time on preparing the data, adding more patient data
+* Try a different primary metric
+* Increase the Experiment Timeout
 
 
 ## Step 4: Hyperparameter Tuning<a name="hyper"></a>
@@ -151,6 +185,8 @@ I utilized a Scikit-learn Logistic Regression Model for Classification on this H
 * Hyperparameter Sampling
 I used RandomParameterSampling as it supports continous and discrete hyperparamters.  Another key benefit of using RandomParameterSampling, is its less resource intensive and time consuming and supports early termination.
 
+```
+
 "--C":choice(0.5,1.0),     
 "--max_iter":choice(50,100,150)
 
@@ -159,47 +195,46 @@ I used RandomParameterSampling as it supports continous and discrete hyperparamt
 * The Early Stopping policy, I utilized was the Bandit Policy is also less resource intensive and time consuming.  If a run's performance is outside the best run's slack_factor, the run is early terminated -- saving time and resources.
 
 
-#### Model Used & Why 
-
-* Utilized a Scikit-learn Logistic Regression Model for Classification
-   
 #### Hyperparamater Tuning
 ```
 hyperdrive_config = HyperDriveConfig (
-hyperparameter_sampling=RandomParameterSampling(
-{"--C":choice(0.5,1.0), --max_iter":choice(50,100,150)})  ,
-primary_metric_goal=PrimaryMetricGoal.MAXIMIZE,
-primary_metric_name='Accuracy',
-policy=BanditPolicy(evaluation_interval=1, slack_factor=0.1),
-max_total_runs=8, 
-max_concurrent_runs=4,
-estimator=SKLearn(source_directory='.', entry_script='train.py', compute_target=cluster_name))
+        hyperparameter_sampling=ps,
+        primary_metric_goal=PrimaryMetricGoal.MAXIMIZE,
+        primary_metric_name='Accuracy',
+        policy=policy,
+        max_total_runs=8, 
+        max_concurrent_runs=4,
+        estimator=est)
 ```
            
 #### Results
 
-Hyperdrive experiment received an accuracy score of 90.94%. Add best run metrics : {'Regularization Strength:': 0.1, 'Max iterations:': 150, 'Accuracy': 0.6059113300492611}
+Hyperdrive experiment received an accuracy score of 80%
+```
+best_run.get_file_names()
+best_run_metrics
 
-The parameters used were ---
-
+```
+```
+{'Regularization Strength:': 0.5, 'Max iterations:': 150, 'Accuracy': 0.8}
+```
 #### Screenshots
-Remeber to provide screenshots of the `RunDetails` widget best model trained with it's parameters.
 
 #### RunDetails widget (shows progress of training runs of the different experiements): 
-![RunDetails Widget](rundetails.PNG)
+![RunDetails Widget](./images/hyper_rundetails2.PNG)
+![RunDetails Widget](./images/hyper_rundetails3.PNG)
 
+#### Best Run
+![RunDetails Widget](./images/hyper_best.PNG)
+![RunDetails Widget](./images/hyper_best2.PNG)
+![RunDetails Widget](./images/hyper_best3.PNG)
 
-#### Best Model with Run ID (VotingEnsemble): 
-![Best Model Summary](best_model_summary.PNG)
 
 #### Improvement Areas
-Changing the sampling type to either GRID or Bayesian sampling could improve the model as well as increasing the maximum run size.
+Changing the sampling type to either GRID or Bayesian sampling could improve the model.
 
 
-## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
-#### Overview
-
+## Step 5: Model Deployment<a name="deploy"></a>
 
 #### [Overview for deploying a model](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-and-where?tabs=python)
 
@@ -211,13 +246,71 @@ Changing the sampling type to either GRID or Bayesian sampling could improve the
 
 #### Instructions on how to query the endpoint
 
+The following cell shows how to query the endpoint:
+```
+
+import json
+import requests
 
 
-## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
-- A working model
-- Demo of the deployed  model
-- Demo of a sample request sent to the endpoint and its response
+test = {
+  "data": [ {
+      "age": 90,
+      "anaemia": 0,
+      "creatinine_phosphokinase": 500, 
+      "diabetes":  1,
+      "ejection_fraction": 150,
+      "high_blood_pressure": 0,
+      "platelets": 100000,
+      "serum_creatinine": 2.75,
+      "serum_sodium": 140,
+      "sex": 1,
+      "smoking": 0,
+      "time": 500 },
+      
+      {"age": 45,
+      "anaemia": 1,
+      "creatinine_phosphokinase": 500, 
+      "diabetes":  1,
+      "ejection_fraction": 50,
+      "high_blood_pressure": 1,
+      "platelets": 100000,
+      "serum_creatinine": 1.75,
+      "serum_sodium": 140,
+      "sex": 0,
+      "smoking": 1,
+      "time": 213}
+  ]
+}
 
-## Standout Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
+
+test_data = json.dumps(test)
+```
+
+Returns the following:
+```
+[0, 0]
+```
+#### Screenshots
+![Best Model Summary](./images/endpoint.PNG)
+![Best Model Summary](./images/deployed_web_service.PNG)
+![Best Model Summary](./images/test_web_service.PNG)
+![Best Model Summary](./images/test_endpoint.PNG)
+
+
+
+
+## Step 7: Documentation Video<a name="video"></a>
+
+[YouTube Video](https://www.youtube.com/watch?v=sb2C0TIpM04)
+
+
+## Acknowledgements<a name="ack"></a>
+
+
+#### Citation
+Davide Chicco, Giuseppe Jurman: Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Medical Informatics and Decision Making 20, 16 (2020). (link)
+
+#### License
+CC BY 4.0
+
