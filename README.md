@@ -294,7 +294,7 @@ Returns the following:
 #### Screenshots
 ![Best Model Summary](./images/end_point.PNG)
 ![Best Model Summary](./images/deployed_web_service.PNG)
-![Best Model Summary](./images/test_webservice.PNG)
+![Best Model Summary](./images/test_response.PNG)
 ![Best Model Summary](./images/test_endpoint.PNG)
 
 
