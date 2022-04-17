@@ -70,7 +70,7 @@ Dataset from Davide Chicco, Giuseppe Jurman: “Machine learning can predict sur
 
 #### Task
 
-* The task involves predicting the Death Event (if the patient deceased during the follow-up period) based on the other 12 features available (see above).  Using Classification, AutoML will predict Death Event and the Hyperdrive model will use Logistic Regression to predict Death Event
+The task involves predicting the Death Event (if the patient deceased during the follow-up period) based on the other 12 features available (see above).  Using Classification, AutoML will predict Death Event and the Hyperdrive model will use Logistic Regression to predict Death Event
 
 #### Access
 
@@ -99,7 +99,7 @@ In the Hyperdrive model, a Jupyter Notebook (hyperparameter_tuning.ipynb) reads 
 
 ## Step 3: Automated ML<a name="automl"></a>
 ### Overview 
-`automl` settings and configuration utlized in this experiment  
+automl settings and configuration utlized in this experiment  
 ```
 automl_settings = {
     "experiment_timeout_minutes": 30,
@@ -160,7 +160,7 @@ Fitted Model: Pipeline(memory=None,
 #### Screenshots
 
 #### RunDetails widget (shows progress of training runs of the different experiments): 
-![RunDetails Widget](./images/automl_best_run_details.PNG)
+![RunDetails Widget](./images/rundetails.PNG)
 
 #### Best Model with Run ID (VotingEnsemble): 
 ![Best Model Summary](./images/automl_best_model2.PNG)
@@ -192,7 +192,7 @@ I used RandomParameterSampling as it supports continous and discrete hyperparamt
 
 ```
 * Early Stopping Policy
-* The Early Stopping policy, I utilized was the Bandit Policy is also less resource intensive and time consuming.  If a run's performance is outside the best run's slack_factor, the run is early terminated -- saving time and resources.
+The Early Stopping policy, I utilized was the Bandit Policy is also less resource intensive and time consuming.  If a run's performance is outside the best run's slack_factor, the run is early terminated -- saving time and resources.
 
 
 #### Hyperparamater Tuning
