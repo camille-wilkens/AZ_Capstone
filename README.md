@@ -203,7 +203,7 @@ Fitted Model: Pipeline(memory=None,
 I utilized a Scikit-learn Logistic Regression Model for Classification on this HyperDrive experiment.
 
 
-* Hyperparameter Sampling
+##### Hyperparameter Sampling
 I used RandomParameterSampling as it supports continous and discrete hyperparamters.  Another key benefit of using RandomParameterSampling, is its less resource intensive and time consuming and supports early termination.
 
 I have used the two hyperparameters:
@@ -222,7 +222,7 @@ I have used the two hyperparameters:
 ```
 
 
-* Early Stopping Policy
+##### Early Stopping Policy
 The Early Stopping policy, I utilized was the Bandit Policy is also less resource intensive and time consuming.  If a run's performance is outside the best run's slack_factor, the run is early terminated -- saving time and resources.
 
 
