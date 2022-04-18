@@ -206,7 +206,7 @@ I utilized a Scikit-learn Logistic Regression Model for Classification on this H
 ##### Hyperparameter Sampling
 I used RandomParameterSampling as it supports continous and discrete hyperparamters.  Another key benefit of using RandomParameterSampling, is its less resource intensive and time consuming and supports early termination.
 
-I have used the two hyperparameters:
+I have used these two hyperparameters:
 
 | Name | Ranges | Description|
 |:--------------:|:-------------:|:--------------:|
