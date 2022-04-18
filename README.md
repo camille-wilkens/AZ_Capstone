@@ -206,12 +206,22 @@ I utilized a Scikit-learn Logistic Regression Model for Classification on this H
 * Hyperparameter Sampling
 I used RandomParameterSampling as it supports continous and discrete hyperparamters.  Another key benefit of using RandomParameterSampling, is its less resource intensive and time consuming and supports early termination.
 
+I have used the two hyperparameters:
+
+| Name | Ranges | Description|
+|:--------------:|:-------------:|:--------------:|
+| "--C"| choice(0.5,1.0) | Inverse of regularization strength; must be a positive float|
+| "-max_iter"| choice(0.5,1.0) |Maximum number of iterations taken for the solvers to converge|
+
+
 ```
 
 "--C":choice(0.5,1.0),     
 "--max_iter":choice(50,100,150)
 
 ```
+
+
 * Early Stopping Policy
 The Early Stopping policy, I utilized was the Bandit Policy is also less resource intensive and time consuming.  If a run's performance is outside the best run's slack_factor, the run is early terminated -- saving time and resources.
 
