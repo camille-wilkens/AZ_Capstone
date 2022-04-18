@@ -99,6 +99,27 @@ In the Hyperdrive model, a Jupyter Notebook (hyperparameter_tuning.ipynb) reads 
 
 ## Step 3: Automated ML<a name="automl"></a>
 ### Overview 
+
+I have used the following automl settings this experiment:
+
+| Name | Setting | Description|
+|:--------------:|:-------------:|:--------------:|
+| Experiment Time| 30 | Maximum amount of time that all iterations combined can take before the experiment terminates. |
+| Max Concurrent Iterations| 5 | Represents the maximum number of iterations that would be executed in parallel.|
+| Number of Cross Validations| 25 | How many cross validations to perform when user validation data is not specified.|
+| Primary Metric| AUC Weighted| The metric that Automated Machine Learning will optimize for model selection.|
+
+
+
+I have used the following automl configuration for this experiment:
+| Name | Setting | Description|
+|:--------------:|:-------------:|:--------------:|
+| Task| Classification | The type of task to run. Values can be 'classification', 'regression', or 'forecasting' depending on the type of automated ML problem to solve.|
+| Label Column | `DEATH_EVENT`| Column to be Predicted |
+| Early Stopping | Enabled| Whether to enable early termination if the score is not improving in the short term. |
+| Auto Features | Enabled| FeaturizationConfig Indicator for whether featurization step should be done automatically or not, or whether customized featurization should be used. Note: If the input data is sparse, featurization cannot be turned on. |
+
+
 automl settings and configuration utlized in this experiment  
 ```
 automl_settings = {
@@ -163,8 +184,8 @@ Fitted Model: Pipeline(memory=None,
 ![RunDetails Widget](./images/rundetails.PNG)
 
 #### Best Model with Run ID (VotingEnsemble): 
-![Best Model Summary](./images/automl_best_model2.PNG)
 ![Best Model Summary](./images/automl_best3.PNG)
+#### Best Model Metrics (VotingEnsemble): 
 ![Best Model Summary](./images/automl_best4.PNG)
 
 
@@ -222,7 +243,7 @@ best_run_metrics
 
 #### RunDetails widget (shows progress of training runs of the different experiements): 
 ![RunDetails Widget](./images/hyper_rundetails2.PNG)
-![RunDetails Widget](./images/hyper_rundetails3.PNG)
+
 
 #### Best Run
 ![RunDetails Widget](./images/hyper_best.PNG)
@@ -236,7 +257,20 @@ Changing the sampling type to either GRID or Bayesian sampling could improve the
 
 ## Step 5: Model Deployment<a name="deploy"></a>
 
-#### [Overview for deploying a model](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-and-where?tabs=python)
+#### Overview
+
+The AutoML Model out performed the HyperDrive model and was the model I chose to deploy. 
+
+Using the best run's model from AutoML, I followed these steps:
+* Saved the model
+* Captured the conda environment of the best run - project_environment.yml
+* Created a scoring script called score.py
+* Registered the best run's model (which created model.pkl file)
+* Created an Inference Configuration using the score.py and project_environment.yml (generated from the best run)
+* Created the Deployment Config
+* Lastly, deployed the model as webservice - heart-failure-service, using ACI (Azure Container Instance) 
+
+#### [Steps to Deploy a Model](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-and-where?tabs=python)
 
 * Register the model.
 * Prepare an inference configuration.
@@ -292,17 +326,17 @@ Returns the following:
 [0, 0]
 ```
 #### Screenshots
-![Best Model Summary](./images/end_point.PNG)
-![Best Model Summary](./images/deployed_web_service.PNG)
+
+#### Testing the Response using the Notebook
 ![Best Model Summary](./images/test_response.PNG)
+
+#### Testing the response using Microsoft Azure Machine Learning - Endpoints
 ![Best Model Summary](./images/test_endpoint.PNG)
-
-
 
 
 ## Step 7: Documentation Video<a name="video"></a>
 
-[YouTube Video](https://www.youtube.com/watch?v=sb2C0TIpM04)
+[YouTube Video](https://youtu.be/0H7VXiSataA)
 
 
 ## Acknowledgements<a name="ack"></a>
