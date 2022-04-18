@@ -144,7 +144,7 @@ automl_config = AutoMLConfig(compute_target=compute_target,
 ```
 
 ### Results
-VotingEnsemble with an accurary of 85.8% and AUC Weighted of 92.3% was the best model
+VotingEnsemble with an accurary of 83.5% and AUC Weighted of 92% was the best model
 
 ### Best Run
 ```
@@ -165,15 +165,15 @@ for i in best_run_metrics:
 ```
 
 ```
-Best Run: AutoML_11620fab-74d8-4a45-b233-a596d2fcec2f_38
+Best Run: AutoML_9ae81c6d-3fc1-45c9-b5c6-a211ba6b00f8_38
 Run(Experiment: ml-experiment-1,
-Id: AutoML_11620fab-74d8-4a45-b233-a596d2fcec2f_38,
+Id: AutoML_9ae81c6d-3fc1-45c9-b5c6-a211ba6b00f8_38,
 Type: azureml.scriptrun,
 Status: Completed)
 Fitted Model: Pipeline(memory=None,
          steps=[('datatransformer',
                  DataTransformer(enable_dnn=False, enable_feature_sweeping=True, feature_sweeping_config={}, feature_sweeping_timeout=86400, featurization_config=None, force_text_dnn=False, is_cross_validation=True, is_onnx_compatible=False, observer=None, task='classification', working_dir='/mnt/batch/tasks/shared/LS_root/mount...
-                 PreFittedSoftVotingClassifier(classification_labels=array([0, 1]), estimators=[('1', Pipeline(memory=None, steps=[('maxabsscaler', MaxAbsScaler(copy=True)), ('xgboostclassifier', XGBoostClassifier(n_jobs=1, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, tree_method='auto'))], verbose=False)), ('0', Pipeline(memory=None, steps=[('maxabsscaler', MaxAbsScaler(copy=True)), ('lightgbmclassifier', LightGBMClassifier(min_data_in_leaf=20, n_jobs=1, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=None))], verbose=False)), ('4', Pipeline(memory=None, steps=[('standardscalerwrapper', StandardScalerWrapper(copy=True, with_mean=False, with_std=True)), ('lightgbmclassifier', LightGBMClassifier(boosting_type='gbdt', colsample_bytree=0.4955555555555555, learning_rate=0.09473736842105263, max_bin=140, max_depth=6, min_child_weight=0, min_data_in_leaf=0.08276034482758622, min_split_gain=0.10526315789473684, n_estimators=25, n_jobs=1, num_leaves=164, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=None, reg_alpha=0.3157894736842105, reg_lambda=0.3157894736842105, subsample=0.5942105263157895))], verbose=False)), ('20', Pipeline(memory=None, steps=[('standardscalerwrapper', StandardScalerWrapper(copy=True, with_mean=False, with_std=False)), ('xgboostclassifier', XGBoostClassifier(booster='gbtree', colsample_bytree=0.9, eta=0.1, gamma=0, max_depth=6, max_leaves=3, n_estimators=25, n_jobs=1, objective='reg:logistic', problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, reg_alpha=0, reg_lambda=0.7291666666666667, subsample=0.5, tree_method='auto'))], verbose=False)), ('23', Pipeline(memory=None, steps=[('maxabsscaler', MaxAbsScaler(copy=True)), ('lightgbmclassifier', LightGBMClassifier(boosting_type='goss', colsample_bytree=0.5944444444444444, learning_rate=0.026323157894736843, max_bin=310, max_depth=-1, min_child_weight=3, min_data_in_leaf=1e-05, min_split_gain=0.7894736842105263, n_estimators=50, n_jobs=1, num_leaves=131, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=None, reg_alpha=0.3684210526315789, reg_lambda=1, subsample=1))], verbose=False)), ('29', Pipeline(memory=None, steps=[('maxabsscaler', MaxAbsScaler(copy=True)), ('lightgbmclassifier', LightGBMClassifier(boosting_type='gbdt', colsample_bytree=0.2977777777777778, learning_rate=0.06842421052631578, max_bin=130, max_depth=8, min_child_weight=1, min_data_in_leaf=0.09310413793103449, min_split_gain=0.631578947368421, n_estimators=100, n_jobs=1, num_leaves=119, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=None, reg_alpha=1, reg_lambda=0.47368421052631576, subsample=0.8415789473684211))], verbose=False)), ('33', Pipeline(memory=None, steps=[('sparsenormalizer', Normalizer(copy=True, norm='l2')), ('xgboostclassifier', XGBoostClassifier(booster='gbtree', colsample_bytree=1, eta=0.01, gamma=0, grow_policy='lossguide', max_bin=63, max_depth=10, max_leaves=511, n_estimators=100, n_jobs=1, objective='reg:logistic', problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, reg_alpha=1.5625, reg_lambda=0.625, subsample=0.8, tree_method='hist'))], verbose=False))], flatten_transform=None, weights=[0.15384615384615385, 0.38461538461538464, 0.15384615384615385, 0.07692307692307693, 0.07692307692307693, 0.07692307692307693, 0.07692307692307693]))],
+                 PreFittedSoftVotingClassifier(classification_labels=array([0, 1]), estimators=[('16', Pipeline(memory=None, steps=[('minmaxscaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('extratreesclassifier', ExtraTreesClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None, criterion='gini', max_depth=None, max_features=None, max_leaf_nodes=None, max_samples=None, min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=0.01, min_samples_split=0.056842105263157895, min_weight_fraction_leaf=0.0, n_estimators=50, n_jobs=1, oob_score=False, random_state=None, verbose=0, warm_start=False))], verbose=False)), ('28', Pipeline(memory=None, steps=[('maxabsscaler', MaxAbsScaler(copy=True)), ('gradientboostingclassifier', GradientBoostingClassifier(ccp_alpha=0.0, criterion='mse', init=None, learning_rate=0.01, loss='deviance', max_depth=10, max_features='log2', max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=0.035789473684210524, min_samples_split=0.5252631578947369, min_weight_fraction_leaf=0.0, n_estimators=600, n_iter_no_change=None, presort='deprecated', random_state=None, subsample=0.7631578947368421, tol=0.0001, validation_fraction=0.1, verbose=0, warm_start=False))], verbose=False)), ('17', Pipeline(memory=None, steps=[('minmaxscaler', MinMaxScaler(copy=True, feature_range=(0, 1))), ('extratreesclassifier', ExtraTreesClassifier(bootstrap=False, ccp_alpha=0.0, class_weight='balanced', criterion='gini', max_depth=None, max_features=0.9, max_leaf_nodes=None, max_samples=None, min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=0.01, min_samples_split=0.01, min_weight_fraction_leaf=0.0, n_estimators=25, n_jobs=1, oob_score=False, random_state=None, verbose=0, warm_start=False))], verbose=False)), ('1', Pipeline(memory=None, steps=[('maxabsscaler', MaxAbsScaler(copy=True)), ('xgboostclassifier', XGBoostClassifier(n_jobs=1, problem_info=ProblemInfo(gpu_training_param_dict={'processing_unit_type': 'cpu'}), random_state=0, tree_method='auto'))], verbose=False)), ('24', Pipeline(memory=None, steps=[('standardscalerwrapper', StandardScalerWrapper(copy=True, with_mean=False, with_std=True)), ('extratreesclassifier', ExtraTreesClassifier(bootstrap=False, ccp_alpha=0.0, class_weight='balanced', criterion='gini', max_depth=None, max_features=None, max_leaf_nodes=None, max_samples=None, min_impurity_decrease=0.0, min_impurity_split=None, min_samples_leaf=0.01, min_samples_split=0.056842105263157895, min_weight_fraction_leaf=0.0, n_estimators=200, n_jobs=1, oob_score=False, random_state=None, verbose=0, warm_start=False))], verbose=False)), ('5', Pipeline(memory=None, steps=[('standardscalerwrapper', StandardScalerWrapper(copy=True, with_mean=True, with_std=False)), ('kneighborsclassifier', KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='cityblock', metric_params=None, n_jobs=1, n_neighbors=29, p=2, weights='distance'))], verbose=False))], flatten_transform=None, weights=[0.2, 0.2, 0.1, 0.1, 0.3, 0.1]))],
          verbose=False)
 ```
 
@@ -245,9 +245,11 @@ best_run_metrics
 ![RunDetails Widget](./images/hyper_rundetails2.PNG)
 
 
-#### Best Run
+#### Hyperdrive Best Run
 ![RunDetails Widget](./images/hyper_best.PNG)
+#### Hyperdrive Best Run Metrics
 ![RunDetails Widget](./images/hyper_best2.PNG)
+#### Hyperdrive Best Run Metrics
 ![RunDetails Widget](./images/hyper_best3.PNG)
 
 
