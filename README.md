@@ -26,8 +26,7 @@ In this Udacity Azure Machine Learning Nanodegree Capstone project, I created tw
 	* Overview
 	* Instructions on how to query the endpoint
 6. [Documentation Video](#video)
-7. [Future Improvements](#future)
-8. [Acknowledgements](#ack)
+7. [Acknowledgements](#ack)
 
 ## Step 1: Project Set Up and Installation<a name="setup"></a>
 
@@ -344,12 +343,6 @@ Returns the following:
 
 #### Testing the response using Microsoft Azure Machine Learning - Endpoints
 ![Best Model Summary](./images/test_endpoint.PNG)
-
-
-## Step 7: Documentation Video<a name="video"></a>
-
-[YouTube Video](https://youtu.be/0H7VXiSataA)
-
 
 ## Acknowledgements<a name="ack"></a>
 
